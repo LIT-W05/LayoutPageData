@@ -1,29 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace WebApplication23.Controllers
 {
+    public class Person
+    {
+        public string Name { get; set; }
+        public int Age { get; set; } 
+    }
+
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
-            return View();
-        }
+            #region dynamic
+            //dynamic obj = new ExpandoObject();
+            //obj.firstName = "Avrumi";
+            //obj.lastName = "Friedman";
+            //obj.foo = new Action(() =>
+            //{
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+            //});
+            #endregion
+            ViewBag.foo = "hello world";
+            Person p = new Person
+            {
+                Name = "Avrumi",
+                Age = 36
+            };
+            ViewBag.Person = p;
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }
